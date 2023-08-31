@@ -104,21 +104,23 @@ document.querySelectorAll(".elem").forEach((elem) => {
   var diffrot = 0;
 
   elem.addEventListener("mousemove", (dets) => {
-    // var diff = dets.clienty -  elem.getBoundingClientRect().top;
+    var diff = dets.clientY - elem.getBoundingClientRect().top;
     diffrot = dets.clientX - rotate;
     rotate = dets.clientX;
     gsap.to(elem.querySelector("img"), {
       opacity: 1,
-      //   top: diff,
+      top: diff,
       left: dets.clientX,
       ease: Power3,
       rotate: gsap.utils.clamp(-20, 20, diffrot),
+      duration: 1,
     });
   });
-  elem.addEventListener("mouseleave", (dets) => {
+  elem.addEventListener("mouseleave", () => {
     gsap.to(elem.querySelector("img"), {
       opacity: 0,
       ease: Power3,
+      duration: 1,
     });
   });
 });
